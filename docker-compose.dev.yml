@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile-dev
+    command: 'npm start'
+    ports:
+      - 3000:3000
+      - 3001:3001
+    working_dir: '/usr/src/app'
+    volumes:
+      - ./web/server:/usr/src/app/server
+      - ./web/client/src:/usr/src/app/client/src
+    environment:
+      - NODE_ENV=development
+      - ME_CONFIG_BASICAUTH_USERNAME=test
+      - ME_CONFIG_BASICAUTH_PASSWORD=test
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=root
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=1234
+    depends_on:
+      - db
+
+  db:
+    image: mongo:4.4.5-bionic
+    volumes:
+      - ./db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: 1234

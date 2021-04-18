@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile-prod
+    command: 'node server/index.js'
+    ports:
+      - 3001:3001
+    working_dir: '/usr/src/app'
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - ME_CONFIG_BASICAUTH_USERNAME=${ME_CONFIG_BASICAUTH_USERNAME}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${ME_CONFIG_BASICAUTH_PASSWORD}
+      - ME_CONFIG_MONGODB_AUTH_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - ME_CONFIG_MONGODB_AUTH_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+    depends_on:
+      - db
+
+  db:
+    image: mongo:4.4.5-bionic
+    volumes:
+      - ./db:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
