@@ -19,6 +19,7 @@ services:
       - ME_CONFIG_BASICAUTH_PASSWORD=test
       - ME_CONFIG_MONGODB_AUTH_USERNAME=root
       - ME_CONFIG_MONGODB_AUTH_PASSWORD=1234
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=TRUE
     depends_on:
       - db
 
