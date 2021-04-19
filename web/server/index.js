@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001
 async function bootstrap() {
   // MIddlewares
   const mongo_express = require('mongo-express/lib/middleware')
-  const mongo_express_config = require('./mongo_express_config')
+  const mongo_express_config = require('./config/mongo_express_config')
 
   // Express only serves static assets in production
   if (process.env.NODE_ENV === 'production') {
