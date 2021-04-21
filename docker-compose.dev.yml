@@ -15,11 +15,12 @@ services:
       - ./web/client/src:/usr/src/app/client/src
     environment:
       - NODE_ENV=development
+      - ME_CONFIG_MONGODB_SERVER=db
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=TRUE
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=1234
       - ME_CONFIG_BASICAUTH_USERNAME=test
       - ME_CONFIG_BASICAUTH_PASSWORD=test
-      - ME_CONFIG_MONGODB_AUTH_USERNAME=root
-      - ME_CONFIG_MONGODB_AUTH_PASSWORD=1234
-      - ME_CONFIG_MONGODB_ENABLE_ADMIN=TRUE
     depends_on:
       - db
 

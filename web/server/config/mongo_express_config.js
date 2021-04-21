@@ -6,7 +6,7 @@ let mongo = {
   connectionString: process.env.ME_CONFIG_MONGODB_SERVER
     ? ''
     : process.env.ME_CONFIG_MONGODB_URL,
-  host: 'db',
+  host: '127.0.0.1',
   port: '27017',
   dbName: '',
 }
